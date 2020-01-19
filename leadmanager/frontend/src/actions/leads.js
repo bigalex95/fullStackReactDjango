@@ -9,7 +9,6 @@ export const getLeads = () => (dispatch, getState) => {
   axios
     .get("/api/leads/", tokenConfig(getState))
     .then(res => {
-      console.log(res.data);
       dispatch({
         type: GET_LEADS,
         payload: res.data

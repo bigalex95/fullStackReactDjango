@@ -7,7 +7,8 @@ export class Form extends Component {
   state = {
     name: "",
     email: "",
-    message: ""
+    message: "",
+    owner: ""
   };
 
   onChange = e =>
@@ -21,13 +22,15 @@ export class Form extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { name, email, message } = this.state;
-    const lead = { name, email, message };
+    const { name, email, message, owner } = this.state;
+    console.log(this.state);
+    const lead = { name, email, message, owner };
     this.props.addLead(lead);
     this.setState({
       name: "",
       email: "",
-      message: ""
+      message: "",
+      owner: ""
     });
   };
 

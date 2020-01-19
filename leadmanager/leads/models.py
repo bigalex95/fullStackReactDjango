@@ -11,4 +11,4 @@ class Lead(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ['email', 'owner']
+        unique_together = [['email', 'owner']]
