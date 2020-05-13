@@ -7,8 +7,10 @@
 ```bash
 # Install dependencies
 npm install
+pipenv install
 
 # Serve API on localhost:8000
+pipenv shell
 python leadmanager/manage.py runserver
 
 # Run webpack (from root)
