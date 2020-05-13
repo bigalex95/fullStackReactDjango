@@ -7,7 +7,7 @@ import { logout } from "../../actions/auth";
 export class Header extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
   };
 
   render() {
@@ -15,7 +15,7 @@ export class Header extends Component {
 
     const authLinks = (
       <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-        <span className="navbar-text mr-3">
+        <span className="navbar-text mr-5">
           <strong>{user ? `Welcome ${user.username}` : ""}</strong>
         </span>
         <li className="nav-item">
@@ -31,21 +31,64 @@ export class Header extends Component {
 
     const guestLinks = (
       <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-        <li className="nav-item">
+        {/* <li className="nav-item light">
           <Link to="/register" className="nav-link">
-            Register
+            Sign Up
           </Link>
-        </li>
-        <li className="nav-item">
+        </li> */}
+        <li className="nav-item light">
           <Link to="/login" className="nav-link">
-            Login
+            Sign In
           </Link>
         </li>
       </ul>
     );
 
+    const randevuAL = (
+      <div className="navbar-nav ml-auto mt-2 mt-lg-0 mr-5">
+        <Link to="/randevual" className="nav-link">
+          Randevu Al
+        </Link>
+      </div>
+    );
+
+    const raporTalep = (
+      <div className="navbar-nav ml-auto mt-2 mt-lg-0 mr-5">
+        {/* <button
+          onClick="raporTalep"
+          type="button"
+          className="btn btn-success btn-outline-light"
+        >
+          Sağlık Rapor
+        </button>
+        <button
+          onClick="raporTalep"
+          type="button"
+          className="btn btn-warning btn-outline-light"
+        >
+          Güvenlik Uzman Rapor
+        </button> */}
+        <form
+          method="get"
+          action="https://dosya.cokbilgi.com/rapor-ornegi-oku-indir.pdf"
+        >
+          <button type="submit" className="btn btn-success btn-outline-light">
+            Sağlık Rapor
+          </button>
+        </form>
+        <form
+          method="get"
+          action="https://dosya.cokbilgi.com/rapor-ornegi-oku-indir.pdf"
+        >
+          <button type="submit" className="btn btn-warning btn-outline-light">
+            Güvenlik Uzman Rapor
+          </button>
+        </form>
+      </div>
+    );
+
     return (
-      <nav className="navbar navbar-expand-sm navbar-light bg-light">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <div className="container">
           <button
             className="navbar-toggler"
@@ -60,9 +103,10 @@ export class Header extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <a className="navbar-brand" href="#">
-              Lead Manager
+              OSGB
             </a>
           </div>
+          {isAuthenticated ? raporTalep : randevuAL}
           {isAuthenticated ? authLinks : guestLinks}
         </div>
       </nav>
@@ -70,8 +114,8 @@ export class Header extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { logout })(Header);
